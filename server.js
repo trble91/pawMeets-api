@@ -12,8 +12,12 @@ app.use(cors());
 app.use(logger("dev"));
 app.use("/", routes);
 
+db.on("connected", ()=>{
+  console.clear()
   app.listen(PORT, () => {
     process.env.NODE_ENV === "production"
       ? console.log(`Express server running in production on port ${PORT}\n\n`)
       : console.log(`Express server running in development on: ${PORT}`);
-});
+  });
+})
+
